@@ -35,6 +35,22 @@ router.get('/:id', async (req, res) => {
   // be sure to include its associated Category and Tag data
 });
 
+router.delete('/:id', async (req, res) => {
+  // delete one product by its `id` value
+  try {
+    const deleted = await Product.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+    if(deleted) {
+      res.status(200).json(deleted);
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Error! Failed to delete!'});
+  }
+});
+
 // create new product
 router.post('/', (req, res) => {
   /* req.body should look like this...
@@ -110,18 +126,6 @@ router.put('/:id', (req, res) => {
       // console.log(err);
       res.status(400).json(err);
     });
-});
-
-router.delete('/:id', async (req, res) => {
-  // delete one product by its `id` value
-  try {
-    const deleted = await Product.destroy({ where: { id: req.params.id}});
-    if (deleted){
-      res.status(200).json(deleted);
-    }
-    } catch (err) {
-      res.status(500).json({ message: 'Error! Tags failed to delete!!'})
-    }
 });
 
 module.exports = router;
