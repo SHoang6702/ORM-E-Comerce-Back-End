@@ -17,16 +17,16 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   // find one category by its `id` value
   try {
-    const category = await Category.findByPk(req.params.id, { include: [{ model: Product }] });
+    const category = await Category.findByPk(req.params.id, { include: [{ model: Product }],});
 
-    if (category) {
+    if (!category) {
       res.status(404).json({ message: 'Error! Not found!'});
       return;
     }
 
   res.status(200).json(category);
   } catch (err) {
-    res.status(500).json({ message: 'Error! Not found!'})
+    res.status(500).json({ message: 'Error!'})
   }
   // be sure to include its associated Products
 });
@@ -55,11 +55,12 @@ router.delete('/:id', async (req, res) => {
   // delete a category by its `id` value
   try {
     const deleted = await Category.destroy({ where: { id: req.params.id}});
-    !deleted ? res.status(404).json({ message: 'Error! ID not found'}) : res.status(200).json(deleted);
-  }
-  catch (err) {
-    res.status(500).json({ message: 'Error! Failed to delete!'});
-  }
+    if (deleted){
+      res.status(200).json(deleted);
+    }
+    } catch (err) {
+      res.status(500).json({ message: 'Error! Tags failed to delete!!'})
+    }
 });
 
 module.exports = router;
