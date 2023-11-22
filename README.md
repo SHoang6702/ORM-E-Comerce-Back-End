@@ -13,7 +13,7 @@ Github Repository:
 https://github.com/SHoang6702/ORM-E-Commerce-Back-End
 
 Youtube Link:
-
+https://youtu.be/ErmoMxqOFEs
 
 ## Credits
 Collaborators:
