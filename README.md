@@ -21,7 +21,6 @@ Sebastian Hoang
 ## Features
 
 ## Note
-Half Life 2 and the Combine are intellectual propery of Valve Corporation, and is being used here legally as parody.
 
 ## License
 None
